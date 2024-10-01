@@ -1,12 +1,20 @@
 package com.example.POD_BookingSystem.Service;
 
 import com.example.POD_BookingSystem.DTO.Request.CreateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.DTO.Response.BuildingResponse;
 import com.example.POD_BookingSystem.Entity.Building;
+import com.example.POD_BookingSystem.Exception.AppException;
+import com.example.POD_BookingSystem.Exception.ErrorCode;
 import com.example.POD_BookingSystem.Mapper.BuildingMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BuildingService {
@@ -36,5 +44,30 @@ public class BuildingService {
             return String.format("BD-%02d", number);
         }
         return "BD-01";
+    }
+
+    //Get All Building
+    public List<BuildingResponse> getAllBuildings(){
+        List<Building> buildings = buildingRepository.findAll();
+        return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
+    }
+
+    //Get Building By Name
+    public List<BuildingResponse> getBuildings(String name){
+        List<Building> buildings = buildingRepository.findAllBuildingByName(name);
+        return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
+    }
+
+    //Update Building
+    public BuildingResponse updateBuilding(String id, UpdateBuildingRequest request){
+        Building building = buildingRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
+        buildingMapper.updateBuilding(building, request);
+        buildingRepository.save(building);
+        return buildingMapper.toBuildingResponse(building);
+    }
+
+    //Delete Building
+    public void deleteBuilding(String id){
+        buildingRepository.deleteById(id);
     }
 }
