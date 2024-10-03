@@ -1,0 +1,98 @@
+/* Container for the entire signup page */
+.signup-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0f7fa; /* Softer, light-blue background */
+    padding: 20px; /* Adds some padding for smaller screens */
+}
+
+/* Main container for the form and image */
+.signup-container {
+    display: flex;
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+    width: 80%;
+    max-width: 1200px; /* Limit max width for large screens */
+    transition: transform 0.3s ease; /* Add a subtle animation */
+}
+
+.signup-container:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+/* Image styling */
+.signup-image {
+    width: 50%;
+    border-radius: 10px;
+    margin-right: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow around the image */
+}
+
+/* Form container */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+/* Title styling */
+.signup-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Label styling */
+.signup-form label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* Input fields styling */
+.signup-form input {
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover/focus */
+}
+
+/* Input fields hover/focus */
+.signup-form input:focus {
+    border-color: #4b6cb7;
+    box-shadow: 0 0 5px rgba(75, 108, 183, 0.5); /* Focus shadow */
+    outline: none;
+}
+
+/* Button styling */
+.signup-form button {
+    padding: 15px;
+    font-size: 1.3em;
+    background-color: #4b6cb7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3); /* Button shadow */
+    transition: all 0.3s ease; /* Smooth hover animation */
+    margin-top: 20px;
+}
+
+/* Button hover effect */
+.signup-form button:hover {
+    background-color: #365299;
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 6px 15px rgba(54, 82, 153, 0.4); /* Stronger shadow */
+}
