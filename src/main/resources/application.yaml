@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /POD_BookingSystem
+
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3307/POD_Booking_system"
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+      naming:
+        physical_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+
+jwt:
+  signerKey: "QqSqzKNtJc/HF0JC5qkhM0KQJCHJ6k2KrWAwfMM2ybr4T20wMkXw4L4Y/kg4uOOx"
