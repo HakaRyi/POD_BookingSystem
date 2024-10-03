@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mysql_container:
+    image: mysql:8.0.39-debian
+    container_name: mysql-8.0.39  # Tên của container MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: khangHx11O5
+    ports:
+      - "3306:3306"
+
+  app:
+    image: hakaryi/building-crud:v1.0
+    container_name: springboot_container  # Tên của container ứng dụng
+    environment:
+      MYSQL_URL: "jdbc:mysql://mysql_container:3306/POD_BookingSystem"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "khangHx11O5"
+    depends_on:
+      - mysql_container
+    ports:
+      - "8081:8080"

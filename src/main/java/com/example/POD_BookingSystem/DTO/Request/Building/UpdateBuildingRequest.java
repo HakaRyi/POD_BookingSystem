@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.DTO.Request;
+package com.example.POD_BookingSystem.DTO.Request.Building;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,8 +8,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateBuildingRequest {
-    String building_name;
+public class UpdateBuildingRequest {
+    String name;
     String address;
     String description;
     String location;

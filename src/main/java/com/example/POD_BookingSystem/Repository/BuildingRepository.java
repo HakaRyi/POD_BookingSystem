@@ -12,7 +12,11 @@ import java.util.List;
 public interface BuildingRepository  extends JpaRepository<Building, String> {
     @Query(value = "Select building_id from Building order by building_id DESC LIMIT 1;", nativeQuery = true)
     public String findLastId();
+
     @Query(value = "SELECT * FROM Building WHERE building_name LIKE %:name%", nativeQuery = true)
     List<Building> findAllBuildingByName(@Param("name") String name);
 
+    Building findByName(String name);
+
+    boolean existsByName(String name);
 }

@@ -29,15 +29,15 @@ public class GlobalException {
         return ResponseEntity.badRequest().body(apiResponse);
     }
 
-//    @ExceptionHandler(value = RuntimeException.class)
-//    ResponseEntity<ApiResponse> handlingRuntimeException(RuntimeException exception) {
-//
-//        ApiResponse apiResponse = new ApiResponse();
-//        apiResponse.setCode(1001);
-//        apiResponse.setMessage(exception.getMessage());
-//        return ResponseEntity.badRequest().body(apiResponse);
-//    }
-//
+    @ExceptionHandler(value = RuntimeException.class)
+    ResponseEntity<ApiResponse> handlingRuntimeException(RuntimeException exception) {
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(1001);
+        apiResponse.setMessage(exception.getMessage());
+        return ResponseEntity.badRequest().body(apiResponse);
+    }
+
     @ExceptionHandler(value = AppException.class)
     ResponseEntity<ApiResponse> handlingAppException(AppException exception) {
         ApiResponse apiResponse = new ApiResponse();

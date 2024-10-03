@@ -10,13 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateRoomRequest {
-    String building_id;
-    String room_name;
-    int capacity;
-    String availability;
-    double price;
-    String type_id;
-    String description;
-    LocalDate available_Date;
+public class CreateRoomTypeRequest {
+    String name;
 }

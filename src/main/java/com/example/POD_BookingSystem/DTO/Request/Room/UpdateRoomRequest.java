@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.DTO.Response;
+package com.example.POD_BookingSystem.DTO.Request.Room;
 
 import jakarta.persistence.Column;
 import lombok.*;
@@ -11,14 +11,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RoomResponse {
-    String room_id;
-    String building_id;
+public class UpdateRoomRequest {
     String room_name;
     int capacity;
     String availability;
     double price;
-    String type_id;
     String description;
     LocalDate available_Date;
 }

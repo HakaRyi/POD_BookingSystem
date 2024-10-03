@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class BuildingResponse {
     String building_id;
-    String building_name;
+    String name;
     String address;
     String description;
     String location;

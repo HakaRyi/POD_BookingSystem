@@ -1,73 +1,95 @@
 package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.DTO.Request.CreateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Request.UpdateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Response.BuildingResponse;
+import com.example.POD_BookingSystem.DTO.Request.Room.CreateRoomRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Room.UpdateRoomRequest;
+import com.example.POD_BookingSystem.DTO.Response.RoomResponse;
 import com.example.POD_BookingSystem.Entity.Building;
+import com.example.POD_BookingSystem.Entity.Room;
+import com.example.POD_BookingSystem.Entity.Room_Type;
 import com.example.POD_BookingSystem.Exception.AppException;
 import com.example.POD_BookingSystem.Exception.ErrorCode;
-import com.example.POD_BookingSystem.Mapper.BuildingMapper;
+import com.example.POD_BookingSystem.Mapper.RoomMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import com.example.POD_BookingSystem.Repository.RoomRepository;
+import com.example.POD_BookingSystem.Repository.RoomTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BuildingService {
+public class RoomService {
+    @Autowired
+    RoomRepository roomRepository;
     @Autowired
     BuildingRepository buildingRepository;
     @Autowired
-    BuildingMapper buildingMapper;
+    RoomTypeRepository roomTypeRepository;
+    @Autowired
+    RoomMapper roomMapper;
 
-    // Tao Ra 1 BUILDING MOI
-    public BuildingResponse createBuilding (CreateBuildingRequest request){
-        Building building = Building.builder()
-                .building_id(GenerateId())
-                .building_name(request.getBuilding_name())
+    // Tao Ra 1 Room MOI
+    public RoomResponse createRoom (CreateRoomRequest request){
+        Building building = buildingRepository.findByName(request.getBuilding_name());
+        if(building == null) throw new AppException(ErrorCode.NAME_NOT_FOUND);
+
+        Room_Type roomType = roomTypeRepository.findByName(request.getType_name());
+        if(roomType == null) throw new RuntimeException("Room type not found");
+
+        Room room = Room.builder()
+                .room_id(GenerateId())
+                .room_name(request.getRoom_name())
+                .availability(request.getAvailability())
+                .price(request.getPrice())
+                .available_Date(request.getAvailable_Date())
+                .building(building)
+                .capacity(request.getCapacity())
                 .description(request.getDescription())
-                .address(request.getAddress())
-                .location(request.getLocation())
+                .roomType(roomType)
                 .build();
-        buildingRepository.save(building);
-        return buildingMapper.toBuildingResponse(building);
+
+        roomRepository.save(room);
+        RoomResponse result = roomMapper.toRoomResponse(room);
+        result.setBuilding_id(building.getBuilding_id());
+        result.setType_id(roomType.getType_id());
+        return result;
     }
 
     // TAO ID 1 cach tu dong
     private String GenerateId(){
-        String id = buildingRepository.findLastId();
+        String id = roomRepository.findLastId();
         if(!(id == null)){
-            int number = Integer.parseInt(id.substring(3))+1;
-            return String.format("BD-%02d", number);
+            int number = Integer.parseInt(id.substring(2))+1;
+            return String.format("R-%02d", number);
         }
-        return "BD-01";
+        return "R-01";
     }
 
-    //Get All Building
-    public List<BuildingResponse> getAllBuildings(){
-        List<Building> buildings = buildingRepository.findAll();
-        return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
+    //Get All Room
+    public List<RoomResponse> getAllRooms(){
+        List<Room> rooms = roomRepository.findAll();
+
+        return rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
     }
 
-    //Get Building By Name
-    public List<BuildingResponse> getBuildings(String name){
-        List<Building> buildings = buildingRepository.findAllBuildingByName(name);
-        return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
+    //Get Room By Name
+    public List<RoomResponse> getRoom(String name){
+        List<Room> rooms = roomRepository.findAllRoomByName(name);
+        return  rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
     }
 
-    //Update Building
-    public BuildingResponse updateBuilding(String id, UpdateBuildingRequest request){
-        Building building = buildingRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
-        buildingMapper.updateBuilding(building, request);
-        buildingRepository.save(building);
-        return buildingMapper.toBuildingResponse(building);
+    //Update Room
+    public RoomResponse updateRoom(String id, UpdateRoomRequest request){
+        Room room = roomRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
+        roomMapper.updateRoom(room, request);
+        roomRepository.save(room);
+        return roomMapper.toRoomResponse(room);
     }
 
-    //Delete Building
-    public void deleteBuilding(String id){
-        buildingRepository.deleteById(id);
+    //Delete Room
+    public void deleteRoom(String id){
+        roomRepository.deleteById(id);
     }
 }

@@ -12,15 +12,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Building")
-public class Building {
+@Table(name = "Room_type")
+public class Room_Type {
     @Id
-    String building_id;
-    String building_name;
-    String address;
-    String description;
-    String location;
+    String type_id;
+    @Column(name = "name")
+    String name;
 
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
-    private List<Room> rooms;
+    @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL)
+    List<Room> rooms;
 }

@@ -1,20 +1,16 @@
 package com.example.POD_BookingSystem.Mapper;
 
-import com.example.POD_BookingSystem.DTO.Request.CreateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Request.CreateRoomRequest;
-import com.example.POD_BookingSystem.DTO.Request.UpdateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Response.BuildingResponse;
-import com.example.POD_BookingSystem.DTO.Response.RoomResponse;
-import com.example.POD_BookingSystem.Entity.Building;
-import com.example.POD_BookingSystem.Entity.Room;
+import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Response.RoomTypeResponse;
+import com.example.POD_BookingSystem.Entity.Room_Type;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
-public interface RoomMapper {
-    Room toRoom(CreateRoomRequest request);
-    RoomResponse toRoomResponse(Room room);
-    @Mapping(target = "room_id", ignore = true)
-    void updateRoom(@MappingTarget Room room, UpdateBuildingRequest request);
+public interface RoomTypeMapper {
+    RoomTypeResponse toRoomTypeResponse(Room_Type roomType);
+
+    @Mapping(target = "type_id", ignore = true)
+    void updateRoom(@MappingTarget Room_Type room_type, UpdateBuildingRequest request);
 }

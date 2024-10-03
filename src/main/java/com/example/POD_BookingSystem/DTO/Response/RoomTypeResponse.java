@@ -1,6 +1,5 @@
 package com.example.POD_BookingSystem.DTO.Response;
 
-import jakarta.persistence.Column;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,14 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RoomResponse {
-    String room_id;
-    String building_id;
-    String room_name;
-    int capacity;
-    String availability;
-    double price;
+public class RoomTypeResponse {
     String type_id;
-    String description;
-    LocalDate available_Date;
+    String name;
 }

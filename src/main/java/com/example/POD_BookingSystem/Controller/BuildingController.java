@@ -1,7 +1,7 @@
 package com.example.POD_BookingSystem.Controller;
 
-import com.example.POD_BookingSystem.DTO.Request.CreateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Request.UpdateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.CreateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
 import com.example.POD_BookingSystem.DTO.Response.BuildingResponse;
 import com.example.POD_BookingSystem.Service.BuildingService;

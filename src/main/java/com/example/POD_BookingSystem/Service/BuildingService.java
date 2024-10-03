@@ -1,16 +1,14 @@
 package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.DTO.Request.CreateBuildingRequest;
-import com.example.POD_BookingSystem.DTO.Request.UpdateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.CreateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.DTO.Response.BuildingResponse;
 import com.example.POD_BookingSystem.Entity.Building;
 import com.example.POD_BookingSystem.Exception.AppException;
 import com.example.POD_BookingSystem.Exception.ErrorCode;
 import com.example.POD_BookingSystem.Mapper.BuildingMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +23,12 @@ public class BuildingService {
 
     // Tao Ra 1 BUILDING MOI
     public BuildingResponse createBuilding (CreateBuildingRequest request){
+        String building_name = request.getName();
+        if(buildingRepository.existsByName(building_name)) throw new RuntimeException("Building is existed");
+
         Building building = Building.builder()
                 .building_id(GenerateId())
-                .building_name(request.getBuilding_name())
+                .name(request.getName())
                 .description(request.getDescription())
                 .address(request.getAddress())
                 .location(request.getLocation())

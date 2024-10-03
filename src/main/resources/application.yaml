@@ -23,3 +23,9 @@ logging:
   level:
     root: INFO
     com.example.identity_service: DEBUG
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+

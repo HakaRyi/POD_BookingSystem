@@ -1,10 +1,10 @@
 package com.example.POD_BookingSystem.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,8 +16,11 @@ import lombok.experimental.FieldDefaults;
 public class Building {
     @Id
     String building_id;
-    String building_name;
+    String name;
     String address;
     String description;
     String location;
+
+    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+    private List<Room> rooms;
 }
