@@ -1,6 +1,6 @@
 package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.DTO.Request.CreateRoomTypeRequest;
+import com.example.POD_BookingSystem.DTO.Request.RoomType.CreateRoomTypeRequest;
 import com.example.POD_BookingSystem.DTO.Response.RoomTypeResponse;
 import com.example.POD_BookingSystem.Entity.Room_Type;
 import com.example.POD_BookingSystem.Mapper.RoomTypeMapper;

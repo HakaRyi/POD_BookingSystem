@@ -1,5 +1,6 @@
 package com.example.POD_BookingSystem.Service;
 
+import com.example.POD_BookingSystem.DTO.Request.Room.AddServiceRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.CreateRoomRequest;
 import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.UpdateRoomRequest;
@@ -13,6 +14,7 @@ import com.example.POD_BookingSystem.Mapper.RoomMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
 import com.example.POD_BookingSystem.Repository.RoomRepository;
 import com.example.POD_BookingSystem.Repository.RoomTypeRepository;
+import com.example.POD_BookingSystem.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ public class RoomService {
     RoomTypeRepository roomTypeRepository;
     @Autowired
     RoomMapper roomMapper;
+    @Autowired
+    ServiceRepository serviceRepository;
 
     // Tao Ra 1 Room MOI
     public RoomResponse createRoom (CreateRoomRequest request){
@@ -91,5 +95,21 @@ public class RoomService {
     //Delete Room
     public void deleteRoom(String id){
         roomRepository.deleteById(id);
+    }
+
+    //ADD Service to Room
+    public void addService(AddServiceRequest request, String roomId){
+        com.example.POD_BookingSystem.Entity.Service service = serviceRepository.findByName(request.getService_name());
+        if(service == null ) throw new RuntimeException("Service is not exist");
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
+
+        room.getServices().add(service);
+
+        // Thêm Room vào Service
+        service.getRooms().add(room);
+
+        // Lưu cả hai thực thể
+        roomRepository.save(room);
+        serviceRepository.save(service);
     }
 }

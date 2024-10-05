@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.DTO.Request;
+package com.example.POD_BookingSystem.DTO.Response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -10,6 +10,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateRoomTypeRequest {
+public class ServiceResponse {
+    String service_id;
     String name;
+    double fee;
+    String description;
+    double price;
 }
