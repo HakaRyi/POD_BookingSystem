@@ -37,4 +37,7 @@ public class Room {
 
     @ManyToMany(mappedBy = "rooms")
     List<Service> services;
+
+    @ManyToMany(mappedBy = "rooms")
+    List<Slot> slots;
 }

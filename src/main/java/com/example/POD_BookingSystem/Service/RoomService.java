@@ -2,7 +2,6 @@ package com.example.POD_BookingSystem.Service;
 
 import com.example.POD_BookingSystem.DTO.Request.Room.AddServiceRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.CreateRoomRequest;
-import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.UpdateRoomRequest;
 import com.example.POD_BookingSystem.DTO.Response.RoomResponse;
 import com.example.POD_BookingSystem.Entity.Building;
@@ -12,8 +11,8 @@ import com.example.POD_BookingSystem.Exception.AppException;
 import com.example.POD_BookingSystem.Exception.ErrorCode;
 import com.example.POD_BookingSystem.Mapper.RoomMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
-import com.example.POD_BookingSystem.Repository.RoomRepository;
-import com.example.POD_BookingSystem.Repository.RoomTypeRepository;
+import com.example.POD_BookingSystem.Repository.ReRoom.RoomRepository;
+import com.example.POD_BookingSystem.Repository.ReRoom.RoomTypeRepository;
 import com.example.POD_BookingSystem.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

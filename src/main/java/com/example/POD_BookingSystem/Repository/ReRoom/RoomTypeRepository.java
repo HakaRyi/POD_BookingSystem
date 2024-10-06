@@ -1,13 +1,9 @@
-package com.example.POD_BookingSystem.Repository;
+package com.example.POD_BookingSystem.Repository.ReRoom;
 
-import com.example.POD_BookingSystem.Entity.Building;
 import com.example.POD_BookingSystem.Entity.Room_Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface RoomTypeRepository extends JpaRepository<Room_Type, String> {

@@ -5,7 +5,7 @@ import com.example.POD_BookingSystem.DTO.Response.RoomTypeResponse;
 import com.example.POD_BookingSystem.Entity.Room_Type;
 import com.example.POD_BookingSystem.Mapper.RoomTypeMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
-import com.example.POD_BookingSystem.Repository.RoomTypeRepository;
+import com.example.POD_BookingSystem.Repository.ReRoom.RoomTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
