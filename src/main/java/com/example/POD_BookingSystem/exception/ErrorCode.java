@@ -14,6 +14,10 @@ public enum ErrorCode {
     USER_NOT_EXISTED(1005, "User not existed",HttpStatus.NOT_FOUND),
     UNAUTHENTICATED(1006, "Unauthenticated",HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1007, "You do not have permission",HttpStatus.FORBIDDEN),
+    ID_NOT_FOUND(1008, "ID is not existed or not available", HttpStatus.NOT_FOUND),
+    NAME_NOT_FOUND(1009, "Wrong name or name is not existed", HttpStatus.NOT_FOUND),
+    INVALID_DATE_RANGE(1010,"Invalid date range",HttpStatus.NOT_FOUND),
+//    ROOM_NOT_AVAILABLE(1011,"Room not available",HttpStatus.NOT_FOUND)
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
