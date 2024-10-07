@@ -42,7 +42,7 @@ public class SecurityConfig {
                 request -> request.
                         requestMatchers(AUTHORIZE_SWAGGER).permitAll()
                         .requestMatchers(HttpMethod.POST, AUTHORIZE_ENDPOINT).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
 
         );
         httpSecurity.oauth2ResourceServer(
