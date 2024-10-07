@@ -1,6 +1,5 @@
 package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.DTO.Request.Room.AddServiceRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.CreateRoomRequest;
 import com.example.POD_BookingSystem.DTO.Request.Room.UpdateRoomRequest;
 import com.example.POD_BookingSystem.DTO.Response.RoomResponse;
@@ -13,7 +12,6 @@ import com.example.POD_BookingSystem.Mapper.RoomMapper;
 import com.example.POD_BookingSystem.Repository.BuildingRepository;
 import com.example.POD_BookingSystem.Repository.ReRoom.RoomRepository;
 import com.example.POD_BookingSystem.Repository.ReRoom.RoomTypeRepository;
-import com.example.POD_BookingSystem.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +28,6 @@ public class RoomService {
     RoomTypeRepository roomTypeRepository;
     @Autowired
     RoomMapper roomMapper;
-    @Autowired
-    ServiceRepository serviceRepository;
 
     // Tao Ra 1 Room MOI
     public RoomResponse createRoom (CreateRoomRequest request){
@@ -43,7 +39,7 @@ public class RoomService {
 
         Room room = Room.builder()
                 .room_id(GenerateId())
-                .room_name(request.getRoom_name())
+                .name(request.getRoom_name())
                 .availability(request.getAvailability())
                 .price(request.getPrice())
                 .available_Date(request.getAvailable_Date())
@@ -82,6 +78,25 @@ public class RoomService {
         List<Room> rooms = roomRepository.findAllRoomByName(name);
         return  rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
     }
+    //Get Room By Building
+    public List<RoomResponse> getRoomByBuilding(String building){
+        List<Room> rooms = roomRepository.findRoomByBuilding(building);
+        return  rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
+
+    }
+    //Get Room By RoomType
+    public List<RoomResponse> getRoomByType(String type){
+        List<Room> rooms = roomRepository.findAllRoomByType(type);
+        return  rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
+
+    }
+
+    //Get Room By Status
+    public List<RoomResponse> getRoomByStatus(){
+        List<Room> rooms = roomRepository.findRoomByStatus();
+        return  rooms.stream().map(roomMapper::toRoomResponse).collect(Collectors.toList());
+
+    }
 
     //Update Room
     public RoomResponse updateRoom(String id, UpdateRoomRequest request){
@@ -94,21 +109,5 @@ public class RoomService {
     //Delete Room
     public void deleteRoom(String id){
         roomRepository.deleteById(id);
-    }
-
-    //ADD Service to Room
-    public void addService(AddServiceRequest request, String roomId){
-        com.example.POD_BookingSystem.Entity.Service service = serviceRepository.findByName(request.getService_name());
-        if(service == null ) throw new RuntimeException("Service is not exist");
-        Room room = roomRepository.findById(roomId).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
-
-        room.getServices().add(service);
-
-        // Thêm Room vào Service
-        service.getRooms().add(room);
-
-        // Lưu cả hai thực thể
-        roomRepository.save(room);
-        serviceRepository.save(service);
     }
 }

@@ -1,10 +1,10 @@
-package com.example.POD_BookingSystem.controller;
+package com.example.POD_BookingSystem.Controller;
 
-import com.example.POD_BookingSystem.dto.request.UserCreationRequest;
-import com.example.POD_BookingSystem.dto.request.UserUpdateRequest;
-import com.example.POD_BookingSystem.dto.response.ApiResponse;
-import com.example.POD_BookingSystem.dto.response.UserResponse;
-import com.example.POD_BookingSystem.service.UserService;
+import com.example.POD_BookingSystem.DTO.Request.User.UserCreationRequest;
+import com.example.POD_BookingSystem.DTO.Request.User.UserUpdateRequest;
+import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
+import com.example.POD_BookingSystem.DTO.Response.UserResponse;
+import com.example.POD_BookingSystem.Service.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -29,27 +29,27 @@ public class UserController {
 
         ApiResponse<UserResponse> apiResponse=new ApiResponse<>();
 
-        apiResponse.setResult(userService.createUser(request));
+        apiResponse.setData(userService.createUser(request));
 
         return apiResponse;
     }
     @GetMapping
     ApiResponse<List<UserResponse>> getUsers() {
         return ApiResponse.<List<UserResponse>>builder()
-                .result(userService.getUsers())
+                .data(userService.getUsers())
                 .build();
     }
     @GetMapping("/{userId}")
     ApiResponse<UserResponse> getUser(@PathVariable("userId") String userId) {
         return ApiResponse.<UserResponse>builder()
-                .result(userService.getUser(userId))
+                .data(userService.getUser(userId))
                 .build();
     }
 
     @PutMapping("/{userId}")
     ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
         return ApiResponse.<UserResponse>builder()
-                .result(userService.updateUser(userId, request))
+                .data(userService.updateUser(userId, request))
                 .build();
     }
 
@@ -57,14 +57,14 @@ public class UserController {
     ApiResponse<String> deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
         return ApiResponse.<String>builder()
-                .result("User has been deleted")
+                .data("User has been deleted")
                 .build();
     }
 
     @GetMapping("/myinfo")
     ApiResponse<UserResponse> getMyInfo() {
         return ApiResponse.<UserResponse>builder()
-                .result(userService.getMyInfo())
+                .data(userService.getMyInfo())
                 .build();
     }
 

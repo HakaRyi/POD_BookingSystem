@@ -1,9 +1,9 @@
-package com.example.POD_BookingSystem.controller;
+package com.example.POD_BookingSystem.Controller;
 
-import com.example.POD_BookingSystem.dto.request.RoleRequest;
-import com.example.POD_BookingSystem.dto.response.ApiResponse;
-import com.example.POD_BookingSystem.entity.Role;
-import com.example.POD_BookingSystem.service.RoleService;
+import com.example.POD_BookingSystem.DTO.Request.User.RoleRequest;
+import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
+import com.example.POD_BookingSystem.Entity.Role;
+import com.example.POD_BookingSystem.Service.RoleService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class RoleController {
 
         ApiResponse<Role> apiResponse=new ApiResponse<>();
 
-        apiResponse.setResult(roleService.createRole(request));
+        apiResponse.setData(roleService.createRole(request));
 
         return apiResponse;
     }

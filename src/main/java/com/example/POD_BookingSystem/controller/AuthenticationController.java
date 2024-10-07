@@ -1,12 +1,13 @@
-package com.example.POD_BookingSystem.controller;
+package com.example.POD_BookingSystem.Controller;
 
-import com.example.POD_BookingSystem.dto.request.AuthenticationRequest;
-import com.example.POD_BookingSystem.dto.request.IntrospectRequest;
-import com.example.POD_BookingSystem.dto.request.LogoutRequest;
-import com.example.POD_BookingSystem.dto.response.ApiResponse;
-import com.example.POD_BookingSystem.dto.response.AuthenticationResponse;
-import com.example.POD_BookingSystem.dto.response.IntrospectResponse;
-import com.example.POD_BookingSystem.service.AuthenticationService;
+
+import com.example.POD_BookingSystem.DTO.Request.Authentication.AuthenticationRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
+import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
+import com.example.POD_BookingSystem.DTO.Response.AuthenticationResponse;
+import com.example.POD_BookingSystem.DTO.Response.IntrospectResponse;
+import com.example.POD_BookingSystem.Service.AuthenticationService;
 
 import com.nimbusds.jose.JOSEException;
 import lombok.AccessLevel;
@@ -32,7 +33,7 @@ public class AuthenticationController {
     ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
         var result = authenticationService.authenticate(request);
         return ApiResponse.<AuthenticationResponse>builder()
-                .result(result)
+                .data(result)
                 .build();
     }
     @PostMapping("/log-out")
@@ -45,7 +46,7 @@ public class AuthenticationController {
     ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
         var result = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder()
-                .result(result)
+                .data(result)
                 .build();
     }
 }

@@ -9,14 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BuildingRepository  extends JpaRepository<Building, String> {
+public interface BuildingRepository extends JpaRepository<Building, String > {
     @Query(value = "Select building_id from Building order by building_id DESC LIMIT 1;", nativeQuery = true)
     public String findLastId();
 
     @Query(value = "SELECT * FROM Building WHERE name LIKE %:name%", nativeQuery = true)
-    List<Building> findAllBuildingByName(@Param("name") String name);
+    List<Building> findAllByName(@Param("name") String name);
 
-    Building findByName(String name);
+    @Query(value = "SELECT * FROM Building WHERE location LIKE %:location%", nativeQuery = true)
+    List<Building> findAllByLocation(@Param("location") String name);
 
-    boolean existsByName(String name);
+    Building findByName(String building_name);
+
+    boolean existsByName(String building_name);
 }

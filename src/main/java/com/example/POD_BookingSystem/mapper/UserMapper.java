@@ -1,11 +1,11 @@
-package com.example.POD_BookingSystem.mapper;
+package com.example.POD_BookingSystem.Mapper;
 
 
 
-import com.example.POD_BookingSystem.dto.request.UserCreationRequest;
-import com.example.POD_BookingSystem.dto.request.UserUpdateRequest;
-import com.example.POD_BookingSystem.dto.response.UserResponse;
-import com.example.POD_BookingSystem.entity.User;
+import com.example.POD_BookingSystem.DTO.Request.User.UserCreationRequest;
+import com.example.POD_BookingSystem.DTO.Request.User.UserUpdateRequest;
+import com.example.POD_BookingSystem.DTO.Response.UserResponse;
+import com.example.POD_BookingSystem.Entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 

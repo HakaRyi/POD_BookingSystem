@@ -26,7 +26,6 @@ public class RoomTypeService {
     // Tao Ra 1 Room Type MOI
     public RoomTypeResponse createRoomType (CreateRoomTypeRequest request){
         log.info("At Service");
-        log.info(request.getName());
         Room_Type roomType = Room_Type.builder()
                 .type_id(GenerateId())
                 .name(request.getName())
@@ -53,18 +52,4 @@ public class RoomTypeService {
         List<Room_Type> roomTypes = roomTypeRepository.findAll();
         return  roomTypes.stream().map(roomTypeMapper::toRoomTypeResponse).collect(Collectors.toList());
     }
-
-
-//    //Update Building
-//    public BuildingResponse updateBuilding(String id, UpdateBuildingRequest request){
-//        Building building = buildingRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ID_NOT_FOUND));
-//        buildingMapper.updateBuilding(building, request);
-//        buildingRepository.save(building);
-//        return buildingMapper.toBuildingResponse(building);
-//    }
-//
-//    //Delete Building
-//    public void deleteBuilding(String id){
-//        buildingRepository.deleteById(id);
-//    }
 }

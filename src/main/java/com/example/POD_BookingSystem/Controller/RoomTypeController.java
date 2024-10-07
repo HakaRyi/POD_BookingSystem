@@ -16,7 +16,6 @@ import java.util.List;
 public class RoomTypeController {
     @Autowired
     RoomTypeService roomTypeService;
-
     @PostMapping
     ApiResponse<RoomTypeResponse> createRoomType(@RequestBody CreateRoomTypeRequest request){
 
@@ -34,4 +33,5 @@ public class RoomTypeController {
                 .data(roomTypeService.getAllRoomTypes())
                 .build();
     }
+
 }

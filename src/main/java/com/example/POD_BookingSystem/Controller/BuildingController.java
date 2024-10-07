@@ -20,7 +20,6 @@ public class BuildingController {
     @PostMapping
     ApiResponse<BuildingResponse> createBuilding(@RequestBody CreateBuildingRequest request){
         return ApiResponse.<BuildingResponse>builder()
-                .data(buildingService.createBuilding(request))
                 .build();
     }
 
@@ -33,10 +32,18 @@ public class BuildingController {
     }
 
     //Get Building By Name API
-    @GetMapping("/{name}")
-    ApiResponse<List<BuildingResponse>> getBuilding(@PathVariable String name){
+    @GetMapping("/name/{name}")
+    ApiResponse<List<BuildingResponse>> getBuilding(@PathVariable("name") String name){
         return ApiResponse.<List<BuildingResponse>>builder()
                 .data(buildingService.getBuildings(name))
+                .build();
+    }
+
+    //Get Building By Location API
+    @GetMapping("/location/{name}")
+    ApiResponse<List<BuildingResponse>> getBuildingByLocation(@PathVariable("name") String name){
+        return ApiResponse.<List<BuildingResponse>>builder()
+                .data(buildingService.getBuildingsByLocation(name))
                 .build();
     }
 

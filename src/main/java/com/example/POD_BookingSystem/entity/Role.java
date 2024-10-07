@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.entity;
+package com.example.POD_BookingSystem.Entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;

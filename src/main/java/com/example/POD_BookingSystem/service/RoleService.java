@@ -1,8 +1,8 @@
-package com.example.POD_BookingSystem.service;
+package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.dto.request.RoleRequest;
-import com.example.POD_BookingSystem.entity.Role;
-import com.example.POD_BookingSystem.repository.RoleRepository;
+import com.example.POD_BookingSystem.DTO.Request.User.RoleRequest;
+import com.example.POD_BookingSystem.Entity.Role;
+import com.example.POD_BookingSystem.Repository.RoleRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

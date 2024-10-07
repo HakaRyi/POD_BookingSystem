@@ -1,20 +1,20 @@
-package com.example.POD_BookingSystem.service;
+package com.example.POD_BookingSystem.Service;
 
-import com.example.POD_BookingSystem.dto.request.IntrospectRequest;
-import com.example.POD_BookingSystem.dto.request.LogoutRequest;
-import com.example.POD_BookingSystem.dto.response.AuthenticationResponse;
-import com.example.POD_BookingSystem.dto.response.IntrospectResponse;
-import com.example.POD_BookingSystem.entity.InvalidatedToken;
-import com.example.POD_BookingSystem.repository.InvalidatedTokenRepository;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
+import com.example.POD_BookingSystem.DTO.Response.AuthenticationResponse;
+import com.example.POD_BookingSystem.DTO.Response.IntrospectResponse;
+import com.example.POD_BookingSystem.Entity.InvalidatedToken;
+import com.example.POD_BookingSystem.Repository.InvalidatedTokenRepository;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.POD_BookingSystem.dto.request.AuthenticationRequest;
-import com.example.POD_BookingSystem.exception.AppException;
-import com.example.POD_BookingSystem.exception.ErrorCode;
-import com.example.POD_BookingSystem.repository.UserRepository;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.AuthenticationRequest;
+import com.example.POD_BookingSystem.Exception.AppException;
+import com.example.POD_BookingSystem.Exception.ErrorCode;
+import com.example.POD_BookingSystem.Repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -44,7 +44,7 @@ public class AuthenticationService {
     InvalidatedTokenRepository invalidatedTokenRepository;
 
     @NonFinal
-    @Value("${jwt.signerKey}")
+    @Value("${jwt.signKey}")
     protected String SIGNER_KEY;
 
 

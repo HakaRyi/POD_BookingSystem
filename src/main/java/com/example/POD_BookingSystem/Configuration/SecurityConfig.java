@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.ConfigGuration;
+package com.example.POD_BookingSystem.Configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,10 @@ import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import javax.crypto.spec.SecretKeySpec;
 
 @Configuration
@@ -21,9 +25,14 @@ import javax.crypto.spec.SecretKeySpec;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final String[] AUTHORIZE_ENDPOINT = {"/api/users" , "/api/auth/log-in", "/api/auth/introspect"};
+    private final String[] AUTHORIZE_ENDPOINT = {"/api/users" , "/api/auth/log-in", "/api/auth/introspect","/swagger-ui.html"};
+    private final String[] AUTHORIZE_SWAGGER = {"/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/webjars/**"};
 
-    @Value("${jwt.signerKey}")
+    @Value("${jwt.signKey}")
     private String signerKey;
 
 
@@ -31,7 +40,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeHttpRequests(
                 request -> request.
-                        requestMatchers(HttpMethod.POST, AUTHORIZE_ENDPOINT).permitAll()
+                        requestMatchers(AUTHORIZE_SWAGGER).permitAll()
+                        .requestMatchers(HttpMethod.POST, AUTHORIZE_ENDPOINT).permitAll()
                         .anyRequest().authenticated()
 
         );
@@ -41,6 +51,7 @@ public class SecurityConfig {
 
         );
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        httpSecurity.cors(cors -> cors.configurationSource(corsFilter()));
 
         return httpSecurity.build();
     }
@@ -57,5 +68,21 @@ public class SecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(10);
+    }
+
+    @Bean
+    public CorsConfigurationSource corsFilter(){
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addAllowedOrigin("http://localhost:3000");
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.addAllowedMethod("");
+        corsConfiguration.addAllowedHeader("");
+
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+
+        return urlBasedCorsConfigurationSource;
     }
 }

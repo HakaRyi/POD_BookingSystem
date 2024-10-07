@@ -1,13 +1,8 @@
 package com.example.POD_BookingSystem.Exception;
 
 import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
-import com.example.POD_BookingSystem.Exception.ErrorCode;
-//import com.example.identity_service.dto.request.ApiResponse;
-//import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -22,10 +17,10 @@ public class GlobalException {
 
     @ExceptionHandler(value = Exception.class)
     ResponseEntity<ApiResponse> handlingException(RuntimeException exception){
-        ErrorCode errorCode = ErrorCode.UNCATEGORIZED;
+        ErrorCode errorCode = ErrorCode.UNCATEGORIZED_EXCEPTION;
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setCode(9999);
-        apiResponse.setMessage(ErrorCode.UNCATEGORIZED.getMessage());
+        apiResponse.setMessage(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
         return ResponseEntity.badRequest().body(apiResponse);
     }
 
@@ -46,7 +41,7 @@ public class GlobalException {
         apiResponse.setCode(errorCode.getCode());
         apiResponse.setMessage(errorCode.getMessage());
 
-        return ResponseEntity.status(errorCode.getHttpStatusCode()).body(apiResponse);
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
     }
 //
 //

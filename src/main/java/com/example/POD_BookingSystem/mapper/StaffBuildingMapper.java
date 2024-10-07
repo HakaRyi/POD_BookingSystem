@@ -1,8 +1,8 @@
-package com.example.POD_BookingSystem.mapper;
+package com.example.POD_BookingSystem.Mapper;
 
-import com.example.POD_BookingSystem.dto.request.StaffBuildingRequest;
-import com.example.POD_BookingSystem.dto.response.StaffBuildingResponse;
-import com.example.POD_BookingSystem.entity.Staff_Building;
+import com.example.POD_BookingSystem.DTO.Request.User.StaffBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Response.StaffBuildingResponse;
+import com.example.POD_BookingSystem.Entity.Staff_Building;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

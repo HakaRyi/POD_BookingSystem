@@ -1,6 +1,7 @@
 package com.example.POD_BookingSystem.Entity.EBooking;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "booking_detail")
 public class BookingDetail {
+    @Id
     String booking_detail_id;
     String room_id;
     String booking_id;

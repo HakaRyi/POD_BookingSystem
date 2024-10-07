@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.dto.response;
+package com.example.POD_BookingSystem.DTO.Response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

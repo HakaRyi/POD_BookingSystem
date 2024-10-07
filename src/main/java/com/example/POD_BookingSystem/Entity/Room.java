@@ -1,11 +1,9 @@
 package com.example.POD_BookingSystem.Entity;
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,7 +15,7 @@ import java.util.List;
 public class Room {
     @Id
     String room_id;
-    String room_name;
+    String name;
     int capacity;
     String availability;
     double price;
@@ -34,10 +32,4 @@ public class Room {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private Room_Type roomType;
-
-    @ManyToMany(mappedBy = "rooms")
-    List<Service> services;
-
-    @ManyToMany(mappedBy = "rooms")
-    List<Slot> slots;
 }

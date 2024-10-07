@@ -23,8 +23,8 @@ public class BuildingService {
 
     // Tao Ra 1 BUILDING MOI
     public BuildingResponse createBuilding (CreateBuildingRequest request){
-        String building_name = request.getName();
-        if(buildingRepository.existsByName(building_name)) throw new RuntimeException("Building is existed");
+        String name = request.getName();
+        if(buildingRepository.existsByName(name)) throw new RuntimeException("Building is existed");
 
         Building building = Building.builder()
                 .building_id(GenerateId())
@@ -55,7 +55,13 @@ public class BuildingService {
 
     //Get Building By Name
     public List<BuildingResponse> getBuildings(String name){
-        List<Building> buildings = buildingRepository.findAllBuildingByName(name);
+        List<Building> buildings = buildingRepository.findAllByName(name);
+        return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
+    }
+
+    //Get Building By Location
+    public List<BuildingResponse> getBuildingsByLocation(String name){
+        List<Building> buildings = buildingRepository.findAllByLocation(name);
         return  buildings.stream().map(buildingMapper::toBuildingResponse).collect(Collectors.toList());
     }
 
@@ -71,4 +77,6 @@ public class BuildingService {
     public void deleteBuilding(String id){
         buildingRepository.deleteById(id);
     }
+
+
 }

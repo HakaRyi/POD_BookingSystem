@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Building")
+
 public class Building {
     @Id
     String building_id;
@@ -22,5 +23,8 @@ public class Building {
     String location;
 
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
-    private List<Room> rooms;
+    List<Room> rooms;
+
+    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+    List<Staff_Building> staffBuildings;
 }
