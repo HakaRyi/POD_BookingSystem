@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.ConfigGuration;
+package com.example.POD_BookingSystem.Configuration;
 
 
 import io.swagger.v3.oas.models.OpenAPI;

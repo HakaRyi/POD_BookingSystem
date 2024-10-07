@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.dto.request;
+package com.example.POD_BookingSystem.DTO.Request.Authentication;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

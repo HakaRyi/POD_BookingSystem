@@ -1,6 +1,6 @@
 package com.example.POD_BookingSystem.mapper;
 
-import com.example.POD_BookingSystem.dto.request.UpdateBuildingRequest;
+import com.example.POD_BookingSystem.DTO.Request.Building.UpdateBuildingRequest;
 import com.example.POD_BookingSystem.dto.response.RoomTypeResponse;
 import com.example.POD_BookingSystem.entity.Room_Type;
 import org.mapstruct.Mapper;

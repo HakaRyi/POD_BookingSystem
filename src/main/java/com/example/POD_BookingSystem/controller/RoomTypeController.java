@@ -1,6 +1,6 @@
 package com.example.POD_BookingSystem.controller;
 
-import com.example.POD_BookingSystem.dto.request.CreateRoomTypeRequest;
+import com.example.POD_BookingSystem.DTO.Request.RoomType.CreateRoomTypeRequest;
 import com.example.POD_BookingSystem.dto.response.ApiResponse;
 import com.example.POD_BookingSystem.dto.response.RoomTypeResponse;
 import com.example.POD_BookingSystem.service.RoomTypeService;

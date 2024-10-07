@@ -1,7 +1,7 @@
 package com.example.POD_BookingSystem.service;
 
-import com.example.POD_BookingSystem.dto.request.IntrospectRequest;
-import com.example.POD_BookingSystem.dto.request.LogoutRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
 import com.example.POD_BookingSystem.dto.response.AuthenticationResponse;
 import com.example.POD_BookingSystem.dto.response.IntrospectResponse;
 import com.example.POD_BookingSystem.entity.InvalidatedToken;
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.POD_BookingSystem.dto.request.AuthenticationRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.AuthenticationRequest;
 import com.example.POD_BookingSystem.exception.AppException;
 import com.example.POD_BookingSystem.exception.ErrorCode;
 import com.example.POD_BookingSystem.repository.UserRepository;

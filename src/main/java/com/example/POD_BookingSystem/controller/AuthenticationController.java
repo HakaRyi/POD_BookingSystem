@@ -1,8 +1,8 @@
 package com.example.POD_BookingSystem.controller;
 
-import com.example.POD_BookingSystem.dto.request.AuthenticationRequest;
-import com.example.POD_BookingSystem.dto.request.IntrospectRequest;
-import com.example.POD_BookingSystem.dto.request.LogoutRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.AuthenticationRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
 import com.example.POD_BookingSystem.dto.response.ApiResponse;
 import com.example.POD_BookingSystem.dto.response.AuthenticationResponse;
 import com.example.POD_BookingSystem.dto.response.IntrospectResponse;

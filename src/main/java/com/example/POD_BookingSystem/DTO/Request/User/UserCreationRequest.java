@@ -1,4 +1,4 @@
-package com.example.POD_BookingSystem.dto.request;
+package com.example.POD_BookingSystem.DTO.Request.User;
 
 import jakarta.validation.constraints.Size;
 import lombok.*;

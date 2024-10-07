@@ -1,7 +1,7 @@
 package com.example.POD_BookingSystem.controller;
 
-import com.example.POD_BookingSystem.dto.request.UserCreationRequest;
-import com.example.POD_BookingSystem.dto.request.UserUpdateRequest;
+import com.example.POD_BookingSystem.DTO.Request.User.UserCreationRequest;
+import com.example.POD_BookingSystem.DTO.Request.User.UserUpdateRequest;
 import com.example.POD_BookingSystem.dto.response.ApiResponse;
 import com.example.POD_BookingSystem.dto.response.UserResponse;
 import com.example.POD_BookingSystem.service.UserService;
