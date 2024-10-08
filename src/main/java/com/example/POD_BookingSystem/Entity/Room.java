@@ -1,5 +1,6 @@
 package com.example.POD_BookingSystem.Entity;
 
+import com.example.POD_BookingSystem.Entity.EBooking.BookingDetail;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -40,4 +41,7 @@ public class Room {
 
     @ManyToMany(mappedBy = "rooms")
     List<Slot> slots;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookingDetail> bookingDetails;
 }

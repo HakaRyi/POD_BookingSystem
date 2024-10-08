@@ -1,5 +1,6 @@
 package com.example.POD_BookingSystem.Service;
 
+import com.example.POD_BookingSystem.DTO.Request.Authentication.GetUserInfoRequest;
 import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
 import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
 import com.example.POD_BookingSystem.DTO.Response.AuthenticationResponse;
@@ -125,6 +126,7 @@ public class AuthenticationService {
         invalidatedTokenRepository.save(invalidatedToken);
     }
 
+
     private SignedJWT verifyToken(String token) throws JOSEException, ParseException {
         JWSVerifier verifier = new MACVerifier(SIGNER_KEY.getBytes());
 
@@ -142,6 +144,19 @@ public class AuthenticationService {
 
         return signedJWT;
 
+    }
+
+    public String getUsernameFromToken(GetUserInfoRequest request) throws ParseException, JOSEException {
+        SignedJWT signedJWT = verifyToken(request.getToken()); // Xác thực token
+
+        // Lấy username từ claims
+        String username = signedJWT.getJWTClaimsSet().getSubject();
+
+        if (username == null || username.isEmpty()) {
+            throw new AppException(ErrorCode.UNAUTHENTICATED); // Nếu không tìm thấy username, throw exception
+        }
+
+        return username; // Trả về username
     }
 
 

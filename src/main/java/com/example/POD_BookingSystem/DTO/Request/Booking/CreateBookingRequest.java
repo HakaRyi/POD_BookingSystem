@@ -11,11 +11,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class CreateBookingRequest {
-    LocalDate booking_date;
-    String user_id;
 
-    String room_id;
-    String booking_type;
-    String service_id;
-    int quantity;
+    String user_id;
+    double total;
+    String bookingVersion;
 }

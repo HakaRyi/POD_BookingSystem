@@ -19,4 +19,7 @@ public interface RoomRepository extends JpaRepository<Room, String> {
 
     @Query(value = "SELECT * FROM Room WHERE room_name LIKE %:name%", nativeQuery = true)
     List<Room> findAllRoomByName(@Param("name") String name);
+
+    @Query(value = "SELECT * FROM Room WHERE room_name = %:name%", nativeQuery = true)
+    Room findRoomByName(@Param("name") String name);
 }

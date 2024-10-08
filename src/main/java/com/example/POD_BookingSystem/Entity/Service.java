@@ -1,5 +1,7 @@
 package com.example.POD_BookingSystem.Entity;
 
+import com.example.POD_BookingSystem.Entity.EBooking.Booking;
+import com.example.POD_BookingSystem.Entity.EBooking.Booking_service;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -28,4 +30,7 @@ public class Service {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     List<Room> rooms;
+
+    @ManyToMany(mappedBy = "services")
+    private List<Booking> bookings;
 }

@@ -2,6 +2,7 @@ package com.example.POD_BookingSystem.Controller;
 
 
 import com.example.POD_BookingSystem.DTO.Request.Authentication.AuthenticationRequest;
+import com.example.POD_BookingSystem.DTO.Request.Authentication.GetUserInfoRequest;
 import com.example.POD_BookingSystem.DTO.Request.Authentication.IntrospectRequest;
 import com.example.POD_BookingSystem.DTO.Request.Authentication.LogoutRequest;
 import com.example.POD_BookingSystem.DTO.Response.ApiResponse;
@@ -48,5 +49,11 @@ public class AuthenticationController {
         return ApiResponse.<IntrospectResponse>builder()
                 .data(result)
                 .build();
+    }
+
+    @PostMapping("/getUserInfo")
+    ApiResponse<String> getUserInfo(@RequestBody GetUserInfoRequest request) throws ParseException, JOSEException {
+        var result = authenticationService.getUsernameFromToken(request);
+        return ApiResponse.<String>builder().data(result).build();
     }
 }
